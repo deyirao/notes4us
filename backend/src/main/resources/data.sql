@@ -1,0 +1,1 @@
+INSERT INTO notes (title, content, created_at, updated_at) VALUES ('Book Recommendations', '1. ''The Pragmatic Programmer'' by Andrew Hunt and David Thomas' || CHAR(10) || '2. ''Clean Code'' by Robert C. Martin' || CHAR(10) || '3. ''Designing Data-Intensive Applications'' by Martin Kleppmann', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
