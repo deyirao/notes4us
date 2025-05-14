@@ -1,0 +1,45 @@
+@startuml Notes4U System
+title "Notes4U - Note Taking App"
+
+actor User
+participant React as "React Frontend"  
+participant Spring as "Spring Boot API"
+participant Database
+
+== Authentication ==
+User -> React: Login with GitHub
+React -> Spring: OAuth request
+Spring -> GitHub: OAuth flow
+GitHub -> Spring: User authenticated
+Spring -> React: JWT token
+React -> User: Login success
+
+== Note Operations ==
+User -> React: Create note
+React -> Spring: POST /api/notes
+Spring -> Database: Save note
+Database -> Spring: Note saved
+Spring -> React: Note created
+React -> User: Show new note
+
+User -> React: View notes
+React -> Spring: GET /api/notes
+Spring -> Database: Fetch user notes
+Database -> Spring: Return notes
+Spring -> React: Notes list
+React -> User: Display notes
+
+User -> React: Edit note
+React -> Spring: PUT /api/notes/{id}
+Spring -> Database: Update note
+Database -> Spring: Note updated
+Spring -> React: Update success
+React -> User: Show updated note
+
+User -> React: Delete note
+React -> Spring: DELETE /api/notes/{id}
+Spring -> Database: Delete note
+Database -> Spring: Note deleted
+Spring -> React: Delete success
+React -> User: Remove from view
+@enduml
